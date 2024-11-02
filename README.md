@@ -21,19 +21,18 @@ $ npm install
 
 ## Database
 
-| Action   | Script                |
-| -------- | --------------------- |
-| Mount DB | `$ docker-compose up -d`   |
+```bash
+$ docker-compose up -d
+```
 
 ## Backend
 
-| Action      | Script                |
-| ----------- | --------------------- |
-| Run backend | `$ npm run start:dev` |
+```bash
+$ npm run start:dev
+```
 
 ## Frontend
 
-| Action       | Script          |
-| ------------ | --------------- |
-| Run frontend | `$ npm start`   |
-
+```bash
+$ npm start
+```
