@@ -1,0 +1,17 @@
+// styles/tailwind.scss
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Example of SCSS variables and nesting
+$primary-color: #3490dc;
+
+.btn {
+  @apply px-4 py-2 rounded text-white; // Tailwind utility classes
+  background-color: $primary-color;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
