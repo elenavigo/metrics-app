@@ -26,7 +26,7 @@ export const Header: FC<PropsWithChildren> = () => {
                 <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   {routes.map((route) => (
-                    <NavLink
+                  <NavLink
                     key={route.title}
                     to={route.path}
                     className={({ isActive }) =>
