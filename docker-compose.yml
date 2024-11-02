@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
   database:
     image: postgres:latest
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:
@@ -14,17 +12,17 @@ services:
 
   backend:
     build:
-      context: ./backend  # Asegúrate de que este es el directorio correcto
-      dockerfile: Dockerfile # Este es el nombre del archivo Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     environment:
       TYPEORM_CONNECTION: postgres
       TYPEORM_HOST: database
-      TYPEORM_USERNAME: myuser
-      TYPEORM_PASSWORD: mypassword
-      TYPEORM_DATABASE: mydb
+      TYPEORM_USERNAME: user
+      TYPEORM_PASSWORD: password
+      TYPEORM_DATABASE: postgres
       TYPEORM_PORT: 5432
       TYPEORM_SYNCHRONIZE: true
-      TYPEORM_ENTITIES: ./src/**/*.entity.ts
+      TYPEORM_ENTITIES: .backend/src/**/*.entity.ts
     ports:
       - "4000:4000"
     depends_on:
