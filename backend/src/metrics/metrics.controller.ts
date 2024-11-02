@@ -1,4 +1,3 @@
-// backend/src/metrics/metrics.controller.ts
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { MetricsService } from './metrics.service';
 import { Metric } from './entities/metric.entity';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Chart from 'react-apexcharts';
-import { ApexOptions } from 'apexcharts'; // Import ApexOptions
+import { ApexOptions } from 'apexcharts';
 
 export const LineChart = () => {
     const [dateRange, setDateRange] = useState<[Date, Date]>([new Date('2021-01-01'), new Date('2021-05-01')]);
@@ -15,16 +15,16 @@ export const LineChart = () => {
 
     const filteredData = data.filter(d => d.x >= dateRange[0].getTime() && d.x <= dateRange[1].getTime());
 
-    const chartOptions: ApexOptions = { // Explicitly set the type here
+    const chartOptions: ApexOptions = {
         chart: {
-            type: 'line', // This should be a specific type, like 'line'
+            type: 'line',
             zoom: { enabled: false },
         },
         xaxis: {
             type: 'datetime',
             labels: {
                 formatter: function(value: string) {
-                    return new Date(value).toLocaleDateString(); // Format date for display
+                    return new Date(value).toLocaleDateString();
                 }
             }
         },
