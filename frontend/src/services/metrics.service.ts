@@ -8,6 +8,8 @@ export const getMetrics = async (): Promise<Metric[]> => {
   return response.data;
 };
 
-export const createMetric = async (metric: Omit<Metric, 'id'>): Promise<void> => {
+export const createMetric = async (
+  metric: Omit<Metric, 'id'>,
+): Promise<void> => {
   await axios.post(`${backendUrl}/metrics`, metric);
 };

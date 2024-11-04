@@ -17,7 +17,7 @@ import { MetricsModule } from './metrics/metrics.module';
       synchronize: true,
     }),
     MetricsModule,
-  ], 
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
