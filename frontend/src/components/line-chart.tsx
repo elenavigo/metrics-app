@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { ChartData } from '../interfaces/chart-data';
@@ -14,9 +14,16 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
     Math.max(...chartData.map((d) => d.x)),
   ]);
 
+  useEffect(() => {
+    setDateRange([
+      Math.min(...chartData.map((d) => d.x)),
+      Math.max(...chartData.map((d) => d.x)),
+    ]);
+  }, [chartData]);
+
   const filteredData = useMemo(
     () => chartData.filter((d) => d.x >= dateRange[0] && d.x <= dateRange[1]),
-    [],
+    [chartData],
   );
 
   const chartOptions: ApexOptions = {
