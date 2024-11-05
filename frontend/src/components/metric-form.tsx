@@ -1,19 +1,17 @@
 import * as yup from 'yup';
-import { MetricProperties } from '../interfaces/metric';
+import { MetricFormProperties } from '../interfaces/metric';
 import { FC, useState } from 'react';
 
 interface Props {
-  onSubmit: (properties: MetricProperties) => void;
+  onSubmit: (properties: MetricFormProperties) => void;
 }
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required(),
   value: yup.number().required().min(1),
   date: yup.date().required(),
 });
 
 const defaultValues = {
-  name: '',
   value: 0,
   date: new Date().toISOString().substring(0, 10),
 };
@@ -54,26 +52,6 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
 
   return (
     <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-      <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
-          <label
-            className="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4"
-            htmlFor="name"
-          >
-            Name
-          </label>
-        </div>
-        <div className="md:w-2/3">
-          <input
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <p className="text-red-600 text-sm">{errors.name}</p>}
-        </div>
-      </div>
       <div className="md:flex md:items-center mb-6">
         <div className="md:w-1/3">
           <label

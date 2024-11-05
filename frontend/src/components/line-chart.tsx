@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { ChartData } from '../interfaces/chart-data';
@@ -14,8 +14,9 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
     Math.max(...chartData.map((d) => d.x)),
   ]);
 
-  const filteredData = chartData.filter(
-    (d) => d.x >= dateRange[0] && d.x <= dateRange[1],
+  const filteredData = useMemo(
+    () => chartData.filter((d) => d.x >= dateRange[0] && d.x <= dateRange[1]),
+    [],
   );
 
   const chartOptions: ApexOptions = {
@@ -46,7 +47,7 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
   ];
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-white rounded-lg shadow-md">
+    <div className="p-4 m-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4">{title}</h2>
       <input
         type="date"
