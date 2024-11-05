@@ -26,11 +26,11 @@ export const ClickMetric: FC = () => {
   return (
     <div>
       {metricsData.length > 0 && (
-        <LineChart title="Click on button" chartData={metricsData} />
+        <LineChart title="Button clicks" chartData={metricsData} />
       )}
       <button
         onClick={handleClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
       >
         Add next day metric
       </button>

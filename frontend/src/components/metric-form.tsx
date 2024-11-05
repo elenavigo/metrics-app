@@ -51,17 +51,17 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
   };
 
   return (
-    <form className="w-full max-w-sm" onSubmit={handleSubmit}>
+    <form className="p-4" onSubmit={handleSubmit}>
       <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
+        <div className="md:w-1/4">
           <label
-            className="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4"
+            className="block text-gray-500 md:text-left mb-1 md:mb-0 pr-4"
             htmlFor="value"
           >
             Value
           </label>
         </div>
-        <div className="md:w-2/3">
+        <div className="md:w-3/4">
           <input
             className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300"
             type="number"
@@ -75,15 +75,15 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
         </div>
       </div>
       <div className="md:flex md:items-center mb-6">
-        <div className="md:w-1/3">
+        <div className="md:w-1/4">
           <label
-            className="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4"
+            className="block text-gray-500 md:text-left mb-1 md:mb-0 pr-4"
             htmlFor="date"
           >
             Date
           </label>
         </div>
-        <div className="md:w-2/3">
+        <div className="md:w-3/4">
           <input
             type="date"
             className=" border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300"
@@ -98,7 +98,7 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
         <div className="md:w-1/3"></div>
         <div className="md:w-2/3">
           <button
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="ms-auto bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
             type="submit"
           >
             Add metric
