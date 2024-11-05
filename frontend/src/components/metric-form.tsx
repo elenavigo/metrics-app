@@ -6,20 +6,22 @@ interface Props {
   onSubmit: (properties: MetricProperties) => void;
 }
 
+const validationSchema = yup.object().shape({
+  name: yup.string().required(),
+  value: yup.number().required().min(1),
+  date: yup.date().required(),
+});
+
+const defaultValues = {
+  name: '',
+  value: 0,
+  date: new Date().toISOString().substring(0, 10),
+};
+
 export const MetricForm: FC<Props> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    value: 0,
-    date: new Date().toISOString().substring(0, 10),
-  });
+  const [formData, setFormData] = useState(defaultValues);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
-  const validationSchema = yup.object().shape({
-    name: yup.string().required(),
-    value: yup.number().required().min(1),
-    date: yup.date().required(),
-  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,6 +36,7 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
     try {
       await validationSchema.validate(formData, { abortEarly: false });
       setErrors({});
+      setFormData(defaultValues);
       onSubmit({ ...formData, date: new Date(formData.date) });
     } catch (error) {
       console.log(error);

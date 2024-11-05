@@ -21,7 +21,6 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <h1>Home Page</h1>
       {metricsData.length > 0 && (
         <LineChart title="Impressions" chartData={metricsData} />
       )}
