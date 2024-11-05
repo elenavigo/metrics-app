@@ -12,5 +12,5 @@ export class Metric {
   value: number;
 
   @Column({ type: Date })
-  timestamp: Date;
+  date: Date;
 }

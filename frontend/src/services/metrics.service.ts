@@ -5,7 +5,10 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 export const getMetrics = async (): Promise<Metric[]> => {
   const response = await axios.get<Metric[]>(`${backendUrl}/metrics`);
-  return response.data;
+  return response.data.map((metric) => ({
+    ...metric,
+    date: new Date(metric.date),
+  }));
 };
 
 export const createMetric = async (

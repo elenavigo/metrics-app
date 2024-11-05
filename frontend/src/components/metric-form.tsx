@@ -9,7 +9,7 @@ interface Props {
 export const MetricForm: FC<Props> = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     name: '',
-    value: '',
+    value: 0,
     date: new Date().toISOString().substring(0, 10),
   });
 
@@ -17,7 +17,7 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
 
   const validationSchema = yup.object().shape({
     name: yup.string().required(),
-    value: yup.string().required(),
+    value: yup.number().required().min(1),
     date: yup.date().required(),
   });
 
@@ -31,7 +31,6 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('ff');
     try {
       await validationSchema.validate(formData, { abortEarly: false });
       setErrors({});
@@ -69,7 +68,7 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
             value={formData.name}
             onChange={handleChange}
           />
-          {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
+          {errors.name && <p className="text-red-600 text-sm">{errors.name}</p>}
         </div>
       </div>
       <div className="md:flex md:items-center mb-6">
@@ -84,12 +83,14 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
         <div className="md:w-2/3">
           <input
             className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300"
-            type="text"
+            type="number"
             name="value"
             value={formData.value}
             onChange={handleChange}
           />
-          {errors.value && <p style={{ color: 'red' }}>{errors.value}</p>}
+          {errors.value && (
+            <p className="text-red-600 text-sm">{errors.value}</p>
+          )}
         </div>
       </div>
       <div className="md:flex md:items-center mb-6">
@@ -109,7 +110,7 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
             value={formData.date}
             onChange={handleChange}
           />
-          {errors.date && <p style={{ color: 'red' }}>{errors.date}</p>}
+          {errors.date && <p className="text-red-600 text-sm">{errors.date}</p>}
         </div>
       </div>
       <div className="md:flex md:items-center">

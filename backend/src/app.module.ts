@@ -8,11 +8,11 @@ import { MetricsModule } from './metrics/metrics.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.TYPEORM_HOST || 'localhost',
-      port: parseInt(process.env.TYPEORM_PORT, 10) || 5432,
-      username: process.env.TYPEORM_USERNAME || 'myuser',
-      password: process.env.TYPEORM_PASSWORD || 'mypassword',
-      database: process.env.TYPEORM_DATABASE || 'mydb',
+      host: 'database',
+      port: 5432,
+      username: 'user',
+      password: 'password',
+      database: 'postgres',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
