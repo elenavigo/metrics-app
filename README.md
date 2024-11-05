@@ -13,10 +13,23 @@ This repository includes:
 
 Node.js 16+
 
-## Project setup
+
+
+## Project start
 
 ```bash
+$ cd frontend
 $ npm install
+$ cd ..
+$ cd backend
+$ npm install
+$ cd ..
+```
+```bash
+$ docker compose up --build
+```
+```bash
+$ npm start
 ```
 
 ## Database
@@ -25,14 +38,14 @@ $ npm install
 $ docker-compose up -d
 ```
 
-## Backend
-
-```bash
-$ npm run start:dev
-```
-
 ## Frontend
 
 ```bash
 $ npm start
+```
+
+## Backend
+
+```bash
+$ npm run start:dev
 ```
