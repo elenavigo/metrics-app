@@ -48,7 +48,7 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
 
   const series = [
     {
-      name: 'Sales',
+      name: 'Value',
       data: filteredData,
     },
   ];

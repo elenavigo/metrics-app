@@ -18,4 +18,9 @@ export class MetricsService {
     const newMetric = this.metricsRepository.create(metric);
     return this.metricsRepository.save(newMetric);
   }
+
+  createMetrics(metrics: Partial<Metric>[]): Promise<Metric[]> {
+    const newMetrics = this.metricsRepository.create(metrics);
+    return this.metricsRepository.save(newMetrics);
+  }
 }

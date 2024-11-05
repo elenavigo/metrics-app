@@ -25,8 +25,10 @@ export const ClickMetric: FC = () => {
 
   return (
     <div>
-      {metricsData.length > 0 && (
+      {metricsData.length > 0 ? (
         <LineChart title="Button clicks" chartData={metricsData} />
+      ) : (
+        <LineChart title="Button clicks" chartData={[]} />
       )}
       <button
         onClick={handleClick}

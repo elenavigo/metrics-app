@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
-import { createMetric, getMetrics } from '../services/metrics.service';
-import { Metric } from '../interfaces/metric';
+import {
+  createMetric,
+  getMetrics,
+  createMetricBulk,
+} from '../services/metrics.service';
+import { Metric, MetricProperties } from '../interfaces/metric';
 import { MetricType } from '../config/metric-type';
 
-export const useMetrics = (metricName: MetricType) => {
+export const useMetrics = (metricName?: MetricType) => {
   const [metrics, setMetrics] = useState<Metric[]>([]);
 
   const fetchAll = async () => {
@@ -14,8 +18,13 @@ export const useMetrics = (metricName: MetricType) => {
     setMetrics(filteredMetric);
   };
 
-  const create = async (body: Omit<Metric, 'id'>) => {
+  const create = async (body: MetricProperties) => {
     await createMetric(body);
+    fetchAll();
+  };
+
+  const createMultiple = async (body: MetricProperties[]) => {
+    await createMetricBulk(body);
     fetchAll();
   };
 
@@ -23,5 +32,5 @@ export const useMetrics = (metricName: MetricType) => {
     fetchAll();
   }, [metricName]);
 
-  return { metrics, create };
+  return { metrics, create, createMultiple };
 };

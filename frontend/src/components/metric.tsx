@@ -27,8 +27,10 @@ export const Metric: FC<Props> = ({ metric, title }) => {
 
   return (
     <div>
-      {metricsData.length > 0 && (
+      {metricsData.length > 0 ? (
         <LineChart title={title ? title : metric} chartData={metricsData} />
+      ) : (
+        <LineChart title={title ? title : metric} chartData={[]} />
       )}
       <MetricForm onSubmit={onSubmit} />
     </div>

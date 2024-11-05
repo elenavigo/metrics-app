@@ -1,4 +1,4 @@
-import { Metric } from '../interfaces/metric';
+import { Metric, MetricProperties } from '../interfaces/metric';
 import axios from 'axios';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
@@ -11,8 +11,12 @@ export const getMetrics = async (): Promise<Metric[]> => {
   }));
 };
 
-export const createMetric = async (
-  metric: Omit<Metric, 'id'>,
-): Promise<void> => {
+export const createMetric = async (metric: MetricProperties): Promise<void> => {
   await axios.post(`${backendUrl}/metrics`, metric);
+};
+
+export const createMetricBulk = async (
+  metric: MetricProperties[],
+): Promise<void> => {
+  await axios.post(`${backendUrl}/metrics/bulk`, metric);
 };

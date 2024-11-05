@@ -15,4 +15,11 @@ export class MetricsController {
   createMetric(@Body() metric: Partial<Metric>): Promise<Metric> {
     return this.metricsService.createMetric(metric);
   }
+
+  @Post('bulk')
+  async createMetricsBulk(
+    @Body() metrics: Partial<Metric>[],
+  ): Promise<Metric[]> {
+    return this.metricsService.createMetrics(metrics);
+  }
 }
