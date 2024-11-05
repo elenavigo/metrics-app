@@ -9,16 +9,11 @@ export const Dashboard: React.FC = () => {
   const { metrics, create } = useMetrics();
 
   const metricsData: ChartData[] = useMemo(() => {
-    return metrics.map((metric) => {
-      console.log(metric.date, 'date');
-      return {
-        x: metric.date.getTime(),
-        y: metric.value,
-      };
-    });
+    return metrics.map((metric) => ({
+      x: metric.date.getTime(),
+      y: metric.value,
+    }));
   }, [metrics]);
-
-  console.log(metricsData, 'metricsData');
 
   const onSubmit = async (properties: MetricProperties) => {
     await create(properties);
@@ -27,7 +22,9 @@ export const Dashboard: React.FC = () => {
   return (
     <div>
       <h1>Home Page</h1>
-      <LineChart title="Impressions" chartData={metricsData} />
+      {metricsData.length > 0 && (
+        <LineChart title="Impressions" chartData={metricsData} />
+      )}
       <MetricForm onSubmit={onSubmit} />
     </div>
   );

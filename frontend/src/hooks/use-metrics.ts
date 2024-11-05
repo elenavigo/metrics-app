@@ -12,6 +12,7 @@ export const useMetrics = (id?: string) => {
 
   const create = async (body: Omit<Metric, 'id'>) => {
     await createMetric(body);
+    fetchAll();
   };
 
   useEffect(() => {
