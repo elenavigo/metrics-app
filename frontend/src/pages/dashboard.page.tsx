@@ -20,7 +20,7 @@ export const Dashboard: React.FC = () => {
       >
         Add test data to metrics
       </button>
-      <div className="grid grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
         <MetricGeneric
           metricName="impression"
           title="Impressions"
