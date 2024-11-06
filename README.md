@@ -22,6 +22,8 @@ $ npm install
 $ npm start
 ```
 
+Also, rename file "env.example" to ".env"
+
 ## BACKEND AND DATABASE
 
 ```bash
