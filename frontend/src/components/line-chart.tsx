@@ -2,6 +2,7 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { ChartData } from '../interfaces/chart-data';
+import { useMetricsDailyAverage } from '../hooks/use-daily-average';
 
 interface Props {
   title: string;
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export const LineChart: FC<Props> = ({ title, chartData }) => {
+  const { dailyAverage } = useMetricsDailyAverage(chartData);
+
   const [dateRange, setDateRange] = useState<[number, number]>([
     Math.min(...chartData.map((d) => d.x)),
     Math.max(...chartData.map((d) => d.x)),
@@ -53,7 +56,7 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
   ];
 
   return (
-    <div className="p-4 m-4 bg-white rounded-lg shadow-md">
+    <div className="p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4">{title}</h2>
       <input
         type="date"
@@ -70,6 +73,11 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
         className="mb-4 p-2 border rounded"
       />
       <Chart options={chartOptions} series={series} type="line" height={350} />
+      <div>
+        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+          Average daily: <span>{dailyAverage}</span>
+        </span>
+      </div>
     </div>
   );
 };

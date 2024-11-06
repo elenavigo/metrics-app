@@ -28,7 +28,7 @@ export const ClickMetric: FC<Props> = ({ metrics, create }) => {
   };
 
   return (
-    <div>
+    <div className="p-4">
       {metricsData.length > 0 ? (
         <LineChart title="Button clicks" chartData={metricsData} />
       ) : (
@@ -37,9 +37,9 @@ export const ClickMetric: FC<Props> = ({ metrics, create }) => {
       <div>
         <button
           onClick={handleClick}
-          className="mx-auto bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          className="mt-3 ms-2 bg-green-200 hover:bg-green-500 text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
         >
-          Add next day metric
+          Click!
         </button>
       </div>
     </div>

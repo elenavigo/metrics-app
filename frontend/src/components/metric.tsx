@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { LineChart } from './line-chart';
 import { MetricForm } from './metric-form';
 import {
@@ -34,12 +34,13 @@ export const MetricGeneric: FC<Props> = ({
   };
 
   return (
-    <div>
+    <div className="m-4">
       {metricsData.length > 0 ? (
         <LineChart title={title ? title : metricName} chartData={metricsData} />
       ) : (
         <LineChart title={title ? title : metricName} chartData={[]} />
       )}
+
       <MetricForm onSubmit={onSubmit} />
     </div>
   );
