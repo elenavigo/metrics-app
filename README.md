@@ -16,36 +16,6 @@ Node.js 16+
 
 
 ## Project start
-
-```bash
-$ cd frontend
-$ npm install
-$ cd ..
-$ cd backend
-$ npm install
-$ cd ..
-```
 ```bash
 $ docker compose up --build
-```
-```bash
-$ npm start
-```
-
-## Database
-
-```bash
-$ docker-compose up -d
-```
-
-## Frontend
-
-```bash
-$ npm start
-```
-
-## Backend
-
-```bash
-$ npm run start:dev
 ```
