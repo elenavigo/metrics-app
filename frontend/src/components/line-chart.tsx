@@ -30,6 +30,7 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
     xaxis: {
       type: 'datetime',
       labels: {
+        show: chartData.length > 0,
         formatter: function (value: any) {
           const timestamp = Number(value);
           const date = new Date(timestamp);
