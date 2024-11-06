@@ -58,6 +58,7 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
 
   return (
     <form className="p-4" onSubmit={handleSubmit}>
+      <h2 className="text-md font-bold mb-4">Add a value here:</h2>
       <div className="md:flex md:items-center mb-6">
         <div className="md:w-1/4">
           <label

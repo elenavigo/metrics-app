@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useMemo } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { ChartData } from '../interfaces/chart-data';
@@ -12,16 +12,10 @@ interface Props {
 export const LineChart: FC<Props> = ({ title, chartData }) => {
   const { dailyAverage, hourlyAverage } = useMetricAverages(chartData);
 
-  const [dateRange, setDateRange] = useState<[number, number]>([
-    Math.min(...chartData.map((d) => d.x)),
-    Math.max(...chartData.map((d) => d.x)),
-  ]);
-
-  useEffect(() => {
-    setDateRange([
-      Math.min(...chartData.map((d) => d.x)),
-      Math.max(...chartData.map((d) => d.x)),
-    ]);
+  const dateRange = useMemo(() => {
+    const minDate = Math.min(...chartData.map((d) => d.x));
+    const maxDate = Math.max(...chartData.map((d) => d.x));
+    return [minDate, maxDate];
   }, [chartData]);
 
   const filteredData = useMemo(() => {
@@ -36,14 +30,28 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
     xaxis: {
       type: 'datetime',
       labels: {
-        formatter: function (value: string) {
-          return new Date(value).toLocaleDateString();
+        formatter: function (value: any) {
+          const timestamp = Number(value);
+          const date = new Date(timestamp);
+          return date.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          });
         },
       },
     },
     tooltip: {
       x: {
-        format: 'dd MMM yyyy',
+        formatter: function (value: any) {
+          const timestamp = Number(value);
+          const date = new Date(timestamp);
+          return `${date.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          })} ${date.getHours()}:${date.getMinutes()}`;
+        },
       },
     },
   };
