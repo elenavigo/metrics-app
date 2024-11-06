@@ -28,7 +28,7 @@ export const ClickMetric: FC<Props> = ({ metrics, create }) => {
   };
 
   return (
-    <div className="p-4">
+    <div className="m-4 p-4 bg-white rounded-lg shadow-md">
       {metricsData.length > 0 ? (
         <LineChart title="Button clicks" chartData={metricsData} />
       ) : (

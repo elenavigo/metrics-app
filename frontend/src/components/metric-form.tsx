@@ -8,13 +8,20 @@ interface Props {
 
 const validationSchema = yup.object().shape({
   value: yup.number().required().min(1),
-  date: yup.date().required(),
+  date: yup.number().required().typeError('Date must be a valid timestamp'),
 });
 
 const defaultValues = {
   value: 0,
-  date: new Date().toISOString().substring(0, 10),
+  date: new Date().getTime(),
 };
+
+const formatDateTimeLocal = (timestamp: number) => {
+  const date = new Date(timestamp);
+  const offset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - offset).toISOString().substring(0, 16);
+};
+
 export const MetricForm: FC<Props> = ({ onSubmit }) => {
   const [formData, setFormData] = useState(defaultValues);
 
@@ -22,9 +29,10 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: name === 'date' ? new Date(value).getTime() : Number(value),
     });
   };
 
@@ -36,7 +44,6 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
       setFormData(defaultValues);
       onSubmit({ ...formData, date: new Date(formData.date) });
     } catch (error) {
-      console.log(error);
       if (error instanceof yup.ValidationError) {
         const validationErrors: { [key: string]: string } = {};
         error.inner.forEach((err) => {
@@ -79,15 +86,15 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
             className="block text-gray-500 md:text-left mb-1 md:mb-0 pr-4"
             htmlFor="date"
           >
-            Date
+            Date & Time
           </label>
         </div>
         <div className="md:w-3/4">
           <input
-            type="date"
-            className=" border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300"
+            type="datetime-local"
+            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300"
             name="date"
-            value={formData.date}
+            value={formatDateTimeLocal(formData.date)}
             onChange={handleChange}
           />
           {errors.date && <p className="text-red-600 text-sm">{errors.date}</p>}

@@ -34,7 +34,7 @@ export const MetricGeneric: FC<Props> = ({
   };
 
   return (
-    <div className="m-4">
+    <div className="m-4 p-4 bg-white rounded-lg shadow-md">
       {metricsData.length > 0 ? (
         <LineChart title={title ? title : metricName} chartData={metricsData} />
       ) : (
