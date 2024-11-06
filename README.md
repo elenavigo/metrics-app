@@ -14,8 +14,16 @@ This repository includes:
 Node.js 16+
 
 
+## FRONTEND
 
-## Project start
+```bash
+$ cd frontend
+$ npm install
+$ npm start
+```
+
+## BACKEND AND DATABASE
+
 ```bash
 $ docker compose up --build
 ```
