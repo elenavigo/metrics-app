@@ -8,7 +8,6 @@ export const Dashboard: React.FC = () => {
   const { metricsByName, create, createMultiple } = useMetrics();
 
   const handleClick = async () => {
-    console.log(metricsData, 'data');
     await createMultiple(metricsData);
   };
 
