@@ -21,13 +21,9 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
     ]);
   }, [chartData]);
 
-  const filteredData = useMemo(
-    () =>
-      chartData.filter((d) => {
-        return d.x >= dateRange[0] && d.x <= dateRange[1];
-      }),
-    [chartData],
-  );
+  const filteredData = useMemo(() => {
+    return chartData.filter((d) => d.x >= dateRange[0] && d.x <= dateRange[1]);
+  }, [chartData, dateRange]);
 
   const chartOptions: ApexOptions = {
     chart: {
