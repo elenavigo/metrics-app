@@ -1,5 +1,5 @@
 import React from 'react';
-import { MetricGeneric } from '../components/metric';
+import { GenericMetric } from '../components/generic-metric';
 import { ClickMetric } from '../components/click-metric';
 import { useMetrics } from '../hooks/use-metrics';
 import { metricsData } from '../config/metric-test-data';
@@ -20,19 +20,19 @@ export const Dashboard: React.FC = () => {
         Add test data to metrics
       </button>
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <MetricGeneric
+        <GenericMetric
           metricName="impression"
           title="Impressions"
           metricsByName={metricsByName}
           create={create}
         />
-        <MetricGeneric
+        <GenericMetric
           metricName="submission"
           title="Form submissions"
           metricsByName={metricsByName}
           create={create}
         />
-        <MetricGeneric
+        <GenericMetric
           metricName="view"
           title="Page views"
           metricsByName={metricsByName}

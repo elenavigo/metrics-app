@@ -16,7 +16,7 @@ interface Props {
   create: (properties: MetricProperties) => void;
 }
 
-export const MetricGeneric: FC<Props> = ({
+export const GenericMetric: FC<Props> = ({
   metricName,
   title,
   metricsByName,
