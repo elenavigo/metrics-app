@@ -58,20 +58,6 @@ export const LineChart: FC<Props> = ({ title, chartData }) => {
   return (
     <div className="p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <input
-        type="date"
-        onChange={(e) =>
-          setDateRange([new Date(e.target.value).getTime(), dateRange[1]])
-        }
-        className="mb-2 p-2 border rounded"
-      />
-      <input
-        type="date"
-        onChange={(e) =>
-          setDateRange([dateRange[0], new Date(e.target.value).getTime()])
-        }
-        className="mb-4 p-2 border rounded"
-      />
       <Chart options={chartOptions} series={series} type="line" height={350} />
       <div>
         <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
