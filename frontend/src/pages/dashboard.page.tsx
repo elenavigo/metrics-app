@@ -1,11 +1,11 @@
 import React from 'react';
-import { Metric } from '../components/metric';
+import { MetricGeneric } from '../components/metric';
 import { ClickMetric } from '../components/click-metric';
 import { useMetrics } from '../hooks/use-metrics';
 import { metricsData } from '../config/metric-test-data';
 
 export const Dashboard: React.FC = () => {
-  const { createMultiple } = useMetrics();
+  const { metricsByName, create, createMultiple } = useMetrics();
 
   const handleClick = async () => {
     console.log(metricsData, 'data');
@@ -21,10 +21,25 @@ export const Dashboard: React.FC = () => {
         Add test data to metrics
       </button>
       <div className="grid grid-cols-2 lg:grid-cols-4">
-        <Metric metric="impression" title="Impressions" />
-        <Metric metric="submission" title="Form submissions" />
-        <Metric metric="view" title="Page views" />
-        <ClickMetric />
+        <MetricGeneric
+          metricName="impression"
+          title="Impressions"
+          metricsByName={metricsByName}
+          create={create}
+        />
+        <MetricGeneric
+          metricName="submission"
+          title="Form submissions"
+          metricsByName={metricsByName}
+          create={create}
+        />
+        <MetricGeneric
+          metricName="view"
+          title="Page views"
+          metricsByName={metricsByName}
+          create={create}
+        />
+        <ClickMetric metrics={metricsByName.click} create={create} />
       </div>
     </div>
   );

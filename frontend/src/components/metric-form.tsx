@@ -15,7 +15,6 @@ const defaultValues = {
   value: 0,
   date: new Date().toISOString().substring(0, 10),
 };
-
 export const MetricForm: FC<Props> = ({ onSubmit }) => {
   const [formData, setFormData] = useState(defaultValues);
 
@@ -95,15 +94,12 @@ export const MetricForm: FC<Props> = ({ onSubmit }) => {
         </div>
       </div>
       <div className="md:flex md:items-center">
-        <div className="md:w-1/3"></div>
-        <div className="md:w-2/3">
-          <button
-            className="ms-auto bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            type="submit"
-          >
-            Add metric
-          </button>
-        </div>
+        <button
+          className="ms-auto bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          type="submit"
+        >
+          Add metric
+        </button>
       </div>
     </form>
   );

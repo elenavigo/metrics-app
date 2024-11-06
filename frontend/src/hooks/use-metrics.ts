@@ -7,15 +7,32 @@ import {
 import { Metric, MetricProperties } from '../interfaces/metric';
 import { MetricType } from '../config/metric-type';
 
-export const useMetrics = (metricName?: MetricType) => {
-  const [metrics, setMetrics] = useState<Metric[]>([]);
+type MetricsByName = Record<MetricType, Metric[]>;
+
+export const useMetrics = () => {
+  const [metricsByName, setMetricsByName] = useState<MetricsByName>({
+    impression: [],
+    submission: [],
+    view: [],
+    click: [],
+  });
 
   const fetchAll = async () => {
     const response = await getMetrics();
-    const filteredMetric = response.filter(
-      (metric) => metric.name === metricName,
+
+    const organizedMetrics: MetricsByName = response.reduce<MetricsByName>(
+      (acc, metric) => {
+        const metricName = metric.name as MetricType;
+        if (!acc[metricName]) {
+          acc[metricName] = [];
+        }
+        acc[metricName] = [...acc[metricName], metric];
+        return acc;
+      },
+      { impression: [], submission: [], view: [], click: [] },
     );
-    setMetrics(filteredMetric);
+
+    setMetricsByName(organizedMetrics);
   };
 
   const create = async (body: MetricProperties) => {
@@ -30,7 +47,7 @@ export const useMetrics = (metricName?: MetricType) => {
 
   useEffect(() => {
     fetchAll();
-  }, [metricName]);
+  }, []);
 
-  return { metrics, create, createMultiple };
+  return { metricsByName, create, createMultiple };
 };
